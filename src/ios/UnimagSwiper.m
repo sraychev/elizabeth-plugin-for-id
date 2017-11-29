@@ -418,7 +418,7 @@ UmReader readerType;
 
         [[data componentsSeparatedByCharactersInSet:
                 [NSCharacterSet whitespaceAndNewlineCharacterSet]]
-            componentsJoinedByString:@""], @"trimmedUnimagData",
+            componentsJoinedByString:@"#"], @"trimmedUnimagData",
 
         nil];
 
