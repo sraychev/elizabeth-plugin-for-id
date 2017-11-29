@@ -345,19 +345,17 @@ UmReader readerType;
 * the raw card data and sends resulting JSON with event.
 */
 - (void)umSwipeReceived:(NSNotification *)notification {    
-/*
     NSData* data = [notification object];
 
     NSString* cardData = [[NSString alloc] 
         initWithData:data 
         encoding:NSASCIIStringEncoding];
-*/
 
-    //NSString* parsedCardData = [self parseCardData:cardData];
+    NSString* parsedCardData = [self parseCardData:cardData];
 
-    //if (parsedCardData) {
-        [self fireEvent:@"swipe_success" ];
-    //} else [self fireEvent:@"swipe_error"];
+    if (parsedCardData) {
+        [self fireEvent:@"swipe_success" withData:parsedCardData];
+    } else [self fireEvent:@"swipe_error"];
 }
 
 /***************************************************
