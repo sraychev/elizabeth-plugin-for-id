@@ -354,7 +354,7 @@ UmReader readerType;
     //NSString* parsedCardData = [self parseCardData:cardData];
 
     //if (parsedCardData) {
-        [self fireEvent:@"swipe_success" withData:data];
+        [self fireEvent:@"swipe_success" ];
     //} else [self fireEvent:@"swipe_error"];
 }
 
