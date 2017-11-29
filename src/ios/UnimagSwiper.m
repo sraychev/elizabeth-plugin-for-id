@@ -416,9 +416,7 @@ UmReader readerType;
 
     NSDictionary* cardData = [[NSDictionary alloc] initWithObjectsAndKeys:
 
-        [[data componentsSeparatedByCharactersInSet:
-                [NSCharacterSet whitespaceAndNewlineCharacterSet]]
-            componentsJoinedByString:@" "], @"trimmedUnimagData",
+        [data], @"trimmedUnimagData",
 
         nil];
 
