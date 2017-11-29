@@ -351,11 +351,11 @@ UmReader readerType;
         initWithData:data 
         encoding:NSASCIIStringEncoding];
 
-    NSString* parsedCardData = [self parseCardData:cardData];
+    //NSString* parsedCardData = [self parseCardData:cardData];
 
-    if (parsedCardData) {
-        [self fireEvent:@"swipe_success" withData:parsedCardData];
-    } else [self fireEvent:@"swipe_error"];
+    //if (parsedCardData) {
+        [self fireEvent:@"swipe_success" withData:data];
+    //} else [self fireEvent:@"swipe_error"];
 }
 
 /***************************************************
