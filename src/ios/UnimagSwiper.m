@@ -411,13 +411,42 @@ UmReader readerType;
 *         Stringified JSON representation of parsed card data
 */
 - (NSString*)parseCardData:(NSString*)data {
+    NSString* num;
+    NSArray* name;
+    NSString* exp;
 
+    NSError *error = NULL;
+    NSRegularExpression* cardParser = [NSRegularExpression regularExpressionWithPattern:
+        @"%B(\\d+)\\^([^\\^]+)\\^(\\d{4})"
+        options:0
+        error:&error];
 
+    NSArray* matches = [cardParser 
+        matchesInString:data 
+        options:0 
+        range:NSMakeRange(0, [data length])];
 
+    if (1) {
+        num = [data substringWithRange:[[matches objectAtIndex:0] rangeAtIndex:1]];
 
+        name = [[data substringWithRange:[[matches objectAtIndex:0] rangeAtIndex:2]] 
+            componentsSeparatedByString:@"/"];
+
+        exp = [data substringWithRange:[[matches objectAtIndex:0] rangeAtIndex:3]];
+
+        if (1) {
             NSDictionary* cardData = [[NSDictionary alloc] initWithObjectsAndKeys:
-                123, @"card_number",
+                num, @"card_number",
 
+                [exp substringFromIndex:2], @"expiry_month",
+
+                [exp substringToIndex:2], @"expiry_year",
+
+                [[name objectAtIndex:1] stringByTrimmingCharactersInSet:
+                    [NSCharacterSet whitespaceCharacterSet]], @"first_name",
+                
+                [[name objectAtIndex:0] stringByTrimmingCharactersInSet:
+                   [NSCharacterSet whitespaceCharacterSet]], @"last_name",
 
                 [[data componentsSeparatedByCharactersInSet:
                         [NSCharacterSet whitespaceAndNewlineCharacterSet]]
@@ -430,7 +459,9 @@ UmReader readerType;
                             options:0 
                             error:&error]
                 encoding:NSUTF8StringEncoding];
-
+        }
+    }
+    return nil;
 }
 
 /** 
